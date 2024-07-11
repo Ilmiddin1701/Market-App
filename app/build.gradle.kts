@@ -50,4 +50,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Material Design
+    implementation(libs.material)
+
+    //noinspection UseTomlInstead
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    //noinspection UseTomlInstead
+    implementation ("com.google.zxing:core:3.4.1")
+    //noinspection UseTomlInstead
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 }
