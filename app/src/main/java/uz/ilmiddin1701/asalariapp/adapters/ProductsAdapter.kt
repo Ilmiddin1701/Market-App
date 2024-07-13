@@ -18,9 +18,9 @@ class ProductsAdapter(var list: ArrayList<Product>) : Adapter<ProductsAdapter.Vh
         fun onBind(product: Product, position: Int) {
             itemRvBinding.apply {
                 Picasso.get().load(product.qrImgURL).into(qrImage)
-                productName.text = "Mahsulot nomi: " + product.name
-                productPrice.text = "Mahsulor narxi: " + product.price.toString()
-                if (list.isNotEmpty() && position == list.size - 1) {
+                productName.text = "Nomi: ${product.name}"
+                productPrice.text = "Narxi: ${product.price}"
+                if (list.isNotEmpty() && position >= 5 && position == list.size - 1) {
                     view.visibility = View.VISIBLE
                 }
             }

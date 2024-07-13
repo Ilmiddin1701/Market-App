@@ -66,4 +66,10 @@ dependencies {
     implementation ("com.google.zxing:core:3.4.1")
     //noinspection UseTomlInstead
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
+
+    //noinspection UseTomlInstead
+    implementation("com.intuit.sdp:sdp-android:1.0.6")
+    //noinspection UseTomlInstead
+    implementation("com.intuit.ssp:ssp-android:1.0.6")
 }

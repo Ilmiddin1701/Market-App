@@ -1,13 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Asalari App</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="qr_image">QR_Image</string>
-    <string name="mahsulot_nomi" tools:ignore="TypographyEllipsis">Mahsulot nomi...</string>
-    <string name="mahsulot_narxi" tools:ignore="TypographyEllipsis">Mahsulot narxi...</string>
+    <string name="mahsulot_nomi">Nomi:</string>
+    <string name="mahsulot_narxi">Narxi:</string>
     <string name="menu">Menu</string>
-    <string name="add_product">Add product</string>
+    <string name="add_product">Mahsulot qo\'shish</string>
     <string name="qr_button">qr_button</string>
-    <string name="olib_kelingan_sana" tools:ignore="TypographyEllipsis">Olib kelingan sana...</string>
+    <string name="olib_kelingan_sana">Sana: 10/10/2024</string>
     <string name="do_konga_joylash">Do\'konga joylash</string>
 </resources>

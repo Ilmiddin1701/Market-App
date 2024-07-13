@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -21,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="#5F7BDC"
+        android:backgroundTint="#009688"
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="10dp">
 
@@ -32,22 +30,21 @@
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             app:elevation="0dp"
-            app:itemIconTint="@color/black"
-            app:itemTextColor="@color/black"
+            app:itemIconTint="#DFFFFC"
+            app:itemTextColor="#DFFFFC"
             app:labelVisibilityMode="selected"
             app:menu="@menu/bottom_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_qr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#56C6F6"
-        android:backgroundTint="#56C6F6"
+        android:backgroundTint="#009688"
         android:contentDescription="@string/qr_button"
         android:src="@drawable/ic_qr_code"
         app:layout_anchor="@+id/bottomAppBar"
         app:layout_anchorGravity="top|center"
-        app:maxImageSize="30dp" />
+        app:maxImageSize="30dp"
+        app:pressedTranslationZ="12dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,5 +1,5 @@
 <resources>
     <style name="Base.Theme.AsalariApp" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="android:statusBarColor">#5F7BDC</item>
+        <item name="android:statusBarColor">#009688</item>
     </style>
 </resources>

@@ -3,72 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginTop="20dp">
+    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:backgroundTint="#D6B4FF"
+        android:layout_margin="10dp"
+        android:backgroundTint="#FF6458"
         app:cardCornerRadius="10dp"
-        app:cardElevation="15dp">
+        app:cardElevation="10dp"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_margin="10dp"
                 android:backgroundTint="@color/white"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp">
 
                 <ImageView
                     android:id="@+id/qrImage"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="165dp"
+                    android:layout_height="165dp"
                     android:contentDescription="@string/qr_image"
                     android:src="@drawable/download" />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <TextView
+                android:id="@+id/productName"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card"
+                android:layout_marginHorizontal="10dp"
+                android:text="@string/mahsulot_nomi"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-                <TextView
-                    android:id="@+id/productName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:text="@string/mahsulot_nomi"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/productPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginVertical="4dp"
-                    android:text="@string/mahsulot_narxi"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/productName"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/mahsulot_narxi"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <View
         android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="140dp"
+        android:layout_height="90dp"
         android:background="@android:color/transparent"
         android:visibility="gone" />
 </LinearLayout>
