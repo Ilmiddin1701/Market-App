@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import uz.ilmiddin1701.asalariapp.databinding.ItemRvBinding
 import uz.ilmiddin1701.asalariapp.models.Product
 
-class ProductsAdapter(var list: ArrayList<Product>) : Adapter<ProductsAdapter.Vh>() {
+class ProductsAdapter(var rvAction: RvAction, var list: ArrayList<Product>) : Adapter<ProductsAdapter.Vh>() {
 
     inner class Vh(var itemRvBinding: ItemRvBinding) : ViewHolder(itemRvBinding.root) {
         @SuppressLint("SetTextI18n")
@@ -20,8 +20,12 @@ class ProductsAdapter(var list: ArrayList<Product>) : Adapter<ProductsAdapter.Vh
                 Picasso.get().load(product.qrImgURL).into(qrImage)
                 productName.text = "Nomi: ${product.name}"
                 productPrice.text = "Narxi: ${product.price}"
+                productDate.text = product.date
                 if (list.isNotEmpty() && position >= 5 && position == list.size - 1) {
                     view.visibility = View.VISIBLE
+                }
+                root.setOnClickListener {
+                    rvAction.itemClick(product, position)
                 }
             }
         }
@@ -35,5 +39,9 @@ class ProductsAdapter(var list: ArrayList<Product>) : Adapter<ProductsAdapter.Vh
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
         holder.onBind(list[position], position)
+    }
+
+    interface RvAction {
+        fun itemClick(product: Product, position: Int)
     }
 }

@@ -1,5 +1,6 @@
 package uz.ilmiddin1701.asalariapp
 
+import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -24,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        MyData.permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()) { check ->
+            MyData.writePermissionGranted = check[Manifest.permission.WRITE_EXTERNAL_STORAGE] ?: MyData.writePermissionGranted
+        }
+        updateOrRequestPermission()
+
         binding.fabQr.setColorFilter(Color.WHITE)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.my_navigation_host) as NavHostFragment
         val navController = navHostFragment.navController
@@ -38,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 showCamera()
-            } else {
-
             }
         }
 
@@ -47,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         registerForActivityResult(ScanContract()) { result: ScanIntentResult ->
             run {
                 if (result.contents == null) {
-                    Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Skannerlash bekor qilindi", Toast.LENGTH_SHORT).show()
                 } else {
                     setResult(result.contents)
 
@@ -93,6 +98,24 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(context, "CAMERA permission required", Toast.LENGTH_SHORT).show()
         } else {
             requestPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+        }
+    }
+
+    private fun updateOrRequestPermission(){
+        val hasWritePermission = ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+        val minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+
+        MyData.writePermissionGranted = hasWritePermission || minSdk29
+
+        val permissionToRequest = mutableListOf<String>()
+        if (!MyData.writePermissionGranted){
+            permissionToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        if (permissionToRequest.isNotEmpty()){
+            MyData.permissionLauncher.launch(permissionToRequest.toTypedArray())
         }
     }
 }

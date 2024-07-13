@@ -1,36 +1,38 @@
 package uz.ilmiddin1701.asalariapp.fragments
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
+import androidx.core.view.drawToBitmap
+import androidx.fragment.app.Fragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import uz.ilmiddin1701.asalariapp.R
+import com.squareup.picasso.Picasso
+import uz.ilmiddin1701.asalariapp.MyData
 import uz.ilmiddin1701.asalariapp.adapters.ProductsAdapter
+import uz.ilmiddin1701.asalariapp.databinding.DialogItemBinding
 import uz.ilmiddin1701.asalariapp.databinding.FragmentHomeBinding
 import uz.ilmiddin1701.asalariapp.models.Product
-import uz.ilmiddin1701.asalariapp.sdk29AdnUp
+import uz.ilmiddin1701.asalariapp.sdk26AdnUp
 import java.io.IOException
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ProductsAdapter.RvAction {
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-
-    private var writePermissionGranted = false
-    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
     //realtime database
     private lateinit var firebaseDatabase: FirebaseDatabase
@@ -55,7 +57,7 @@ class HomeFragment : Fragment() {
                         val product = child.getValue(Product::class.java)
                         list.add(product!!)
                     }
-                    productsAdapter = ProductsAdapter(list)
+                    productsAdapter = ProductsAdapter(this@HomeFragment, list)
                     rv.adapter = productsAdapter
                 }
                 override fun onCancelled(error: DatabaseError) {
@@ -66,8 +68,8 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun saveToExternalStorage(displayName: String, bmp: Bitmap): Boolean{
-        val imageCollection = sdk29AdnUp {
+    private fun saveToExternalStorage(displayName: String, bmp: Bitmap): Boolean {
+        val imageCollection = sdk26AdnUp {
             MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
         } ?: MediaStore.Images.Media.EXTERNAL_CONTENT_URI
 
@@ -90,21 +92,26 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun updateOrRequestPermission(){
-        val hasWritePermission = ContextCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-        val minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-
-        writePermissionGranted = hasWritePermission || minSdk29
-
-        val permissionToRequest = mutableListOf<String>()
-        if (!writePermissionGranted){
-            permissionToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    @SuppressLint("SetTextI18n")
+    override fun itemClick(product: Product, position: Int) {
+        val dialog = AlertDialog.Builder(context).create()
+        val dialogView = DialogItemBinding.inflate(layoutInflater)
+        dialogView.apply {
+            tvName.text = "Nomi: ${product.name}"
+            tvPrice.text = "Narxi: ${product.price}"
+            tvDate.text = "Olib kelingan sana: ${product.date}"
+            Picasso.get().load(product.qrImgURL).into(qrImage)
+            btnDownload.setOnClickListener {
+                if (MyData.writePermissionGranted) {
+                    saveToExternalStorage(product.name!!, qrImage.drawToBitmap())
+                    Toast.makeText(context, "QR-kod yuklandi", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Yuklash uchun ruxsat berilmagan", Toast.LENGTH_SHORT).show()
+                }
+            }
+            btnCancel.setOnClickListener { dialog.cancel() }
         }
-        if (permissionToRequest.isNotEmpty()){
-            permissionLauncher.launch(permissionToRequest.toTypedArray())
-        }
+        dialog.setView(dialogView.root)
+        dialog.show()
     }
 }
