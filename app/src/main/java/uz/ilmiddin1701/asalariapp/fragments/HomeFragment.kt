@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import uz.ilmiddin1701.asalariapp.MyData
+import uz.ilmiddin1701.asalariapp.R
 import uz.ilmiddin1701.asalariapp.adapters.ProductsAdapter
 import uz.ilmiddin1701.asalariapp.databinding.DialogItemBinding
 import uz.ilmiddin1701.asalariapp.databinding.FragmentHomeBinding
@@ -94,11 +95,11 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
 
     @SuppressLint("SetTextI18n")
     override fun itemClick(product: Product, position: Int) {
-        val dialog = AlertDialog.Builder(context).create()
+        val dialog = AlertDialog.Builder(context, R.style.NewDialog).create()
         val dialogView = DialogItemBinding.inflate(layoutInflater)
         dialogView.apply {
             tvName.text = "Nomi: ${product.name}"
-            tvPrice.text = "Narxi: ${product.price}"
+            tvPrice.text = "Narxi: ${product.price} so'm"
             tvDate.text = "Olib kelingan sana: ${product.date}"
             Picasso.get().load(product.qrImgURL).into(qrImage)
             btnDownload.setOnClickListener {

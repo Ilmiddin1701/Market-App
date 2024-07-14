@@ -19,9 +19,9 @@ class ProductsAdapter(var rvAction: RvAction, var list: ArrayList<Product>) : Ad
             itemRvBinding.apply {
                 Picasso.get().load(product.qrImgURL).into(qrImage)
                 productName.text = "Nomi: ${product.name}"
-                productPrice.text = "Narxi: ${product.price}"
+                productPrice.text = "Narxi: ${product.price} so'm"
                 productDate.text = product.date
-                if (list.isNotEmpty() && position >= 5 && position == list.size - 1) {
+                if (list.isNotEmpty() && position == list.size - 1) {
                     view.visibility = View.VISIBLE
                 }
                 root.setOnClickListener {
