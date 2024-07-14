@@ -1,20 +1,15 @@
 package uz.ilmiddin1701.asalariapp.fragments
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ContentValues
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.core.content.ContextCompat
 import androidx.core.view.drawToBitmap
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.DataSnapshot
@@ -61,6 +56,7 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
                     productsAdapter = ProductsAdapter(this@HomeFragment, list)
                     rv.adapter = productsAdapter
                 }
+
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
                 }
@@ -107,7 +103,8 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
                     saveToExternalStorage(product.name!!, qrImage.drawToBitmap())
                     Toast.makeText(context, "QR-kod yuklandi", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(context, "Yuklash uchun ruxsat berilmagan", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Yuklash uchun ruxsat berilmagan", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
             btnCancel.setOnClickListener { dialog.cancel() }
