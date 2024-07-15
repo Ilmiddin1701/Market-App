@@ -1,25 +1,22 @@
 package uz.ilmiddin1701.asalariapp.models
 
 class Product {
+    var id: String? = null
     var name: String? = null
-    var price: Int? = null
+    var price: Long? = null
+    var soni: Long? = null
     var date: String? = null
     var qrImgURL: String? = null
 
+
     constructor()
 
-    constructor(name: String?, price: Int?, date: String?, qrImgURL: String?) {
+    constructor(id: String?, name: String?, price: Long?, soni: Long, date: String?, qrImgURL: String?) {
+        this.id = id
         this.name = name
         this.price = price
+        this.soni = soni
         this.date = date
         this.qrImgURL = qrImgURL
     }
-
-    constructor(name: String?, price: Int?, date: String?) {
-        this.name = name
-        this.price = price
-        this.date = date
-    }
-
-
 }

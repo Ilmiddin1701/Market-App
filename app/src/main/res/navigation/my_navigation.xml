@@ -15,4 +15,14 @@
         android:name="uz.ilmiddin1701.asalariapp.fragments.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" />
+    <fragment
+        android:id="@+id/scannerFragment"
+        android:name="uz.ilmiddin1701.asalariapp.fragments.ScannerFragment"
+        android:label="fragment_scanner"
+        tools:layout="@layout/fragment_scanner" />
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="uz.ilmiddin1701.asalariapp.fragments.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" />
 </navigation>

@@ -62,10 +62,21 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/productDate"
+                android:id="@+id/productSoni"
                 android:layout_width="165dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/productPrice"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/soni"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/productDate"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/productSoni"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="10dp"

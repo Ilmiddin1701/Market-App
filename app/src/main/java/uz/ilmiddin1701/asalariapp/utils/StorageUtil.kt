@@ -1,4 +1,4 @@
-package uz.ilmiddin1701.asalariapp
+package uz.ilmiddin1701.asalariapp.utils
 
 import android.os.Build
 

@@ -1,32 +1,39 @@
 package uz.ilmiddin1701.asalariapp.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.squareup.picasso.Picasso
 import uz.ilmiddin1701.asalariapp.databinding.ItemRvBinding
 import uz.ilmiddin1701.asalariapp.models.Product
+import uz.ilmiddin1701.asalariapp.utils.MyData
+import uz.ilmiddin1701.asalariapp.utils.MySharedPreferences
 
-class ProductsAdapter(var rvAction: RvAction, var list: ArrayList<Product>) : Adapter<ProductsAdapter.Vh>() {
+class ScannerAdapter(var context: Context, var list: ArrayList<Product>) : Adapter<ScannerAdapter.Vh>() {
+
+    var umumiyNarx: Long =  0
 
     inner class Vh(var itemRvBinding: ItemRvBinding) : ViewHolder(itemRvBinding.root) {
         @SuppressLint("SetTextI18n")
-        fun onBind(product: Product, position: Int) {
+        fun onBind(product: Product) {
             itemRvBinding.apply {
                 Picasso.get().load(product.qrImgURL).into(qrImage)
                 productName.text = "Nomi: ${product.name}"
                 productPrice.text = "Narxi: ${product.price} so'm"
-                productSoni.text = "Soni: ${product.soni} ta"
+                MySharedPreferences.init(context)
+                var count: Long = 0
+                for (i in MySharedPreferences.sharedList) {
+                    if (product.id == i) {
+                        count++
+                    }
+                    productSoni.text = "Soni: $count ta"
+                }
+                umumiyNarx += product.price!! * count
+                MyData.umumiyNarx.postValue(umumiyNarx)
                 productDate.text = product.date
-                if (list.isNotEmpty() && position >= 5 && position == list.size - 1) {
-                    view.visibility = View.VISIBLE
-                }
-                root.setOnClickListener {
-                    rvAction.itemClick(product, position)
-                }
             }
         }
     }
@@ -38,10 +45,6 @@ class ProductsAdapter(var rvAction: RvAction, var list: ArrayList<Product>) : Ad
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.onBind(list[position], position)
-    }
-
-    interface RvAction {
-        fun itemClick(product: Product, position: Int)
+        holder.onBind(list[position])
     }
 }

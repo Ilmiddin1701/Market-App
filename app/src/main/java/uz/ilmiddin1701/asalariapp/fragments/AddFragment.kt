@@ -59,18 +59,18 @@ class AddFragment : Fragment() {
                 if (edtName.text.isNotBlank() && edtPrice.text.isNotBlank() && tvDay.text.isNotBlank()) {
                     progressBar.visibility = View.VISIBLE
                     btnAdd.isEnabled = false
-                    val product = Product(edtName.text.toString(), edtPrice.text.toString().toInt(), tvDay.text.toString())
-                    val gson = Gson()
-                    val gsonString = gson.toJson(product)
-                    generateQRCode(gsonString)
+                    val id = UUID.randomUUID().toString()
+                    generateQRCode(id)
+                    qrImage.setImageBitmap(btm)
+                    card.visibility = View.VISIBLE
                     val imageUri = getImageUri(requireContext(), btm)
-                    val task = storageReference.child(UUID.randomUUID().toString()).putFile(imageUri)
+                    val task = storageReference.child(id).putFile(imageUri)
                     task.addOnSuccessListener {
                         if (it.task.isSuccessful) {
                             val downloadURL = it.metadata?.reference?.downloadUrl
                             downloadURL?.addOnSuccessListener { imageURL ->
                                 imgURL = imageURL.toString()
-                                val product1 = Product(edtName.text.toString(), edtPrice.text.toString().toInt(), tvDay.text.toString(), imgURL)
+                                val product1 = Product(id, edtName.text.toString(), edtPrice.text.toString().toLong(), edtSoni.text.toString().toLong(), tvDay.text.toString(), imgURL)
                                 val key = realtimeReference.push().key!!
                                 realtimeReference.child(key).setValue(product1)
                             }

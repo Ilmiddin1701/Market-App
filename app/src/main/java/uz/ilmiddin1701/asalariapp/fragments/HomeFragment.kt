@@ -18,13 +18,13 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import uz.ilmiddin1701.asalariapp.MyData
+import uz.ilmiddin1701.asalariapp.utils.MyData
 import uz.ilmiddin1701.asalariapp.R
 import uz.ilmiddin1701.asalariapp.adapters.ProductsAdapter
 import uz.ilmiddin1701.asalariapp.databinding.DialogItemBinding
 import uz.ilmiddin1701.asalariapp.databinding.FragmentHomeBinding
 import uz.ilmiddin1701.asalariapp.models.Product
-import uz.ilmiddin1701.asalariapp.sdk26AdnUp
+import uz.ilmiddin1701.asalariapp.utils.sdk26AdnUp
 import java.io.IOException
 
 class HomeFragment : Fragment(), ProductsAdapter.RvAction {
