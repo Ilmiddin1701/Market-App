@@ -2,22 +2,16 @@ package uz.ilmiddin1701.asalariapp.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import okhttp3.Request
-import uz.ilmiddin1701.asalariapp.R
-import uz.ilmiddin1701.asalariapp.adapters.ProductsAdapter
 import uz.ilmiddin1701.asalariapp.adapters.ScannerAdapter
 import uz.ilmiddin1701.asalariapp.databinding.FragmentScannerBinding
 import uz.ilmiddin1701.asalariapp.models.Product

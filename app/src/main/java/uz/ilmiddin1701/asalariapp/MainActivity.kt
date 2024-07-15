@@ -10,16 +10,12 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.google.gson.Gson
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
 import uz.ilmiddin1701.asalariapp.databinding.ActivityMainBinding
-import uz.ilmiddin1701.asalariapp.fragments.ScannerFragment
-import uz.ilmiddin1701.asalariapp.models.Product
 import uz.ilmiddin1701.asalariapp.utils.MyData
 import uz.ilmiddin1701.asalariapp.utils.MySharedPreferences
 

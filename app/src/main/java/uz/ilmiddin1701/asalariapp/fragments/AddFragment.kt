@@ -18,15 +18,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.gson.Gson
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
 import uz.ilmiddin1701.asalariapp.databinding.FragmentAddBinding
 import uz.ilmiddin1701.asalariapp.models.Product
 import java.io.ByteArrayOutputStream
-import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.UUID
 
 class AddFragment : Fragment() {

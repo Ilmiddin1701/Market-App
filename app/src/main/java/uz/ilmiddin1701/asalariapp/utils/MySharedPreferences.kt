@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import uz.ilmiddin1701.asalariapp.models.Product
 
 object MySharedPreferences {
     private const val NAME = "catch_file_name"
