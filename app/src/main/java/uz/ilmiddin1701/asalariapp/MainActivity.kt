@@ -57,11 +57,13 @@ class MainActivity : AppCompatActivity() {
             run {
                 if (result.contents == null) {
                     Toast.makeText(this, "Skanerlash bekor qilindi", Toast.LENGTH_SHORT).show()
+                    MyData.isScanner.postValue(false)
                 } else {
                     MySharedPreferences.init(this)
                     val sharedList = MySharedPreferences.sharedList
                     sharedList.add(result.contents)
                     MySharedPreferences.sharedList = sharedList
+                    MyData.isScanner.postValue(true)
                 }
             }
         }

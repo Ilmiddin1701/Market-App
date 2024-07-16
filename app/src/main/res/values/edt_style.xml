@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="edt">
+        <item name="android:background">@drawable/edt_style</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColorHint">#C86201</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:inputType">textCapSentences|textMultiLine</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="edtNumber">
+        <item name="android:background">@drawable/edt_style</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColorHint">#C86201</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:inputType">number</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+</resources>

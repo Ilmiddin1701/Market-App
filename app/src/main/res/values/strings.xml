@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Asalari App</string>
     <string name="qr_image">QR_Image</string>
-    <string name="mahsulot_nomi">Nomi:</string>
-    <string name="mahsulot_narxi">Narxi:</string>
+    <string name="mahsulot_nomi">Nomi</string>
+    <string name="mahsulot_narxi">Narxi</string>
     <string name="home">Home</string>
     <string name="add_product">Mahsulot qo\'shish</string>
     <string name="qr_button">qr_button</string>
@@ -11,10 +11,9 @@
     <string name="qr_kodni_yuklab_olish">QR kodni yuklab olish</string>
     <string name="bekor_qilish">Bekor qilish</string>
     <string name="skanerlangan">Skanerlangan mahsulotlar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hisobot">Hisobot</string>
     <string name="yangi_savdo_boshlash">Yangi savdo boshlash</string>
     <string name="jami_narx_0_so_m">Jami narx: 0 so\'m</string>
-    <string name="soni">Soni:</string>
+    <string name="soni">Soni</string>
+    <string name="empty">Skannerlanganlar ro\'yxati bo\'sh!\nSavdoni boshlash uchun QR-kodni \nskanerlang</string>
 </resources>

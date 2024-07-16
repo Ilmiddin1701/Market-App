@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="@color/green"
     tools:context=".fragments.AddFragment">
 
     <LinearLayout
@@ -18,8 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:visibility="gone"
             android:backgroundTint="@color/white"
+            android:visibility="gone"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
             app:strokeColor="@color/black"
@@ -35,54 +35,41 @@
 
         <EditText
             android:id="@+id/edtName"
+            style="@style/edt"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginVertical="10dp"
-            android:background="@drawable/edt_style"
             android:hint="@string/mahsulot_nomi"
-            android:importantForAutofill="no"
-            android:inputType="textCapSentences|textMultiLine"
-            android:padding="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="#FFD4D0"
-            android:textSize="22sp" />
+            android:importantForAutofill="no" />
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/edtPrice"
+                style="@style/edtNumber"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/edt_style"
                 android:hint="@string/mahsulot_narxi"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:padding="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="#FFD4D0"
-                android:textSize="22sp" />
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/edtSoni"
+                style="@style/edtNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
+                android:gravity="center"
                 android:layout_marginVertical="10dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/edt_style"
                 android:hint="@string/soni"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:padding="12dp"
-                android:textColor="@color/white"
-                android:textColorHint="#FFD4D0"
-                android:textSize="22sp" />
+                android:importantForAutofill="no" />
         </LinearLayout>
 
         <TextView
@@ -92,15 +79,11 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/edt_style"
             android:drawableEnd="@drawable/ic_date"
-            android:drawableTint="@color/white"
+            android:drawableTint="@color/black"
             android:gravity="center_vertical"
             android:hint="@string/olib_kelingan_sana"
-            android:padding="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="#FFD4D0"
-            android:textSize="22sp"
+            style="@style/edt"
             tools:ignore="UseCompatTextViewDrawableXml" />
 
         <androidx.cardview.widget.CardView
@@ -110,7 +93,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
-            android:backgroundTint="#009688"
+            android:backgroundTint="@color/blue"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
@@ -122,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/do_konga_joylash"
-                android:textColor="#DFFFFC"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>

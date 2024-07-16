@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ import com.google.firebase.storage.StorageReference
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.google.zxing.qrcode.QRCodeWriter
+import uz.ilmiddin1701.asalariapp.R
 import uz.ilmiddin1701.asalariapp.databinding.FragmentAddBinding
 import uz.ilmiddin1701.asalariapp.models.Product
 import java.io.ByteArrayOutputStream
@@ -51,6 +53,11 @@ class AddFragment : Fragment() {
         storageReference = firebaseStorage.getReference("QrCodes")
 
         binding.apply {
+            edtName.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.add_1))
+            linear.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.add_2))
+            tvDay.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.add_3))
+            btnAdd.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.add_4))
+
             tvDay.setOnClickListener { showCalendar() }
             btnAdd.setOnClickListener {
                 if (edtName.text.isNotBlank() && edtPrice.text.isNotBlank() && tvDay.text.isNotBlank()) {

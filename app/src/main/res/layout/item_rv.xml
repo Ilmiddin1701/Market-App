@@ -8,10 +8,13 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:backgroundTint="#FF6458"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/yellow"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="8dp"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp">
 
@@ -46,8 +49,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/card"
                 android:layout_marginHorizontal="10dp"
+                android:textStyle="bold"
                 android:text="@string/mahsulot_nomi"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:textSize="18sp" />
 
             <TextView
@@ -57,8 +61,9 @@
                 android:layout_below="@id/productName"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="4dp"
+                android:textStyle="bold"
                 android:text="@string/mahsulot_narxi"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:textSize="18sp" />
 
             <TextView
@@ -68,8 +73,9 @@
                 android:layout_below="@id/productPrice"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="4dp"
+                android:textStyle="bold"
                 android:text="@string/soni"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:textSize="18sp" />
 
             <TextView
@@ -80,8 +86,9 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="10dp"
+                android:textStyle="bold"
                 android:gravity="end"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:textSize="14sp" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

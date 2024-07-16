@@ -1,72 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_background"
+    android:background="@color/green"
     tools:context=".fragments.ScannerFragment">
 
     <LinearLayout
+        android:id="@+id/empty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2" />
+        <ImageView
+            android:id="@+id/emptyImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/empty_box" />
 
-        <com.google.android.material.card.MaterialCardView
+        <TextView
+            android:id="@+id/emptyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="90dp"
-            android:backgroundTint="@color/white"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp">
+            android:gravity="center"
+            android:text="@string/empty"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginBottom="30dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-            <RelativeLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
 
-                <TextView
-                    android:id="@+id/totalPrice"
-                    android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="90dp"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/jami_narx_0_so_m"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:background="@color/yellow">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btnNew"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:backgroundTint="#FF6458"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="@color/black"
-                    app:strokeWidth="1dp"
-                    tools:ignore="RelativeOverlap">
+                    <TextView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:text="@string/jami_narx_0_so_m"
+                        android:textColor="@color/blue"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_true" />
-                </com.google.android.material.card.MaterialCardView>
-            </RelativeLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-</ScrollView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_toStartOf="@id/btnNew"
+                        android:backgroundTint="#FF6458"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?selectableItemBackground"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp"
+                        tools:ignore="RelativeOverlap">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_false" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/btnNew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/blue"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?selectableItemBackground"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp"
+                        tools:ignore="RelativeOverlap">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_true" />
+                    </com.google.android.material.card.MaterialCardView>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

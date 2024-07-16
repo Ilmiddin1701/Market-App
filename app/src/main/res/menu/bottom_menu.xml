@@ -7,23 +7,23 @@
         android:title="@string/home" />
 
     <item
+        android:id="@+id/placeholder2"
+        android:enabled="false"
+        android:title="" />
+
+    <item
+        android:id="@+id/placeholder3"
+        android:enabled="false"
+        android:title="" />
+
+    <item
         android:id="@+id/scannerFragment"
         android:icon="@drawable/ic_sell"
         android:title="@string/skanerlangan" />
 
     <item
-        android:id="@+id/placeholder"
-        android:enabled="false"
-        android:title="" />
-
-    <item
         android:id="@+id/addFragment"
         android:icon="@drawable/ic_add"
         android:title="@string/add_product" />
-
-    <item
-        android:id="@+id/reportFragment"
-        android:icon="@drawable/ic_report"
-        android:title="@string/hisobot" />
 
 </menu>

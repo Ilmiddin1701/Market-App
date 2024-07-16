@@ -6,5 +6,6 @@ import androidx.lifecycle.MutableLiveData
 object MyData {
     var writePermissionGranted = false
     var umumiyNarx = MutableLiveData<Long>()
+    var isScanner = MutableLiveData<Boolean>()
     lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 }
