@@ -1,11 +1,10 @@
 package uz.ilmiddin1701.asalariapp.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import uz.ilmiddin1701.asalariapp.R
+import androidx.fragment.app.Fragment
 import uz.ilmiddin1701.asalariapp.databinding.FragmentReportBinding
 
 class ReportFragment : Fragment() {
