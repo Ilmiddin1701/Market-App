@@ -64,7 +64,7 @@ class AddFragment : Fragment() {
                 if (edtName.text.isNotBlank() && edtPrice.text.isNotBlank() && tvDay.text.isNotBlank()) {
                     progressBar.visibility = View.VISIBLE
                     btnAdd.isEnabled = false
-                    val id = UUID.randomUUID().toString()
+                    val id = realtimeReference.push().key!!
                     generateQRCode(id)
                     qrImage.setImageBitmap(btm)
                     card.visibility = View.VISIBLE
@@ -76,8 +76,7 @@ class AddFragment : Fragment() {
                             downloadURL?.addOnSuccessListener { imageURL ->
                                 imgURL = imageURL.toString()
                                 val product1 = Product(id, edtName.text.toString(), edtPrice.text.toString().toLong(), edtSoni.text.toString().toLong(), tvDay.text.toString(), imgURL)
-                                val key = realtimeReference.push().key!!
-                                realtimeReference.child(key).setValue(product1)
+                                realtimeReference.child(id).setValue(product1)
                             }
                             progressBar.visibility = View.GONE
                             btnAdd.isEnabled = true

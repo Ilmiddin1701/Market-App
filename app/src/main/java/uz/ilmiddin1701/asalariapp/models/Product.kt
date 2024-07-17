@@ -8,7 +8,6 @@ class Product {
     var date: String? = null
     var qrImgURL: String? = null
 
-
     constructor()
 
     constructor(id: String?, name: String?, price: Long?, soni: Long, date: String?, qrImgURL: String?) {
