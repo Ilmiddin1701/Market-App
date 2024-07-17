@@ -20,4 +20,9 @@
         android:name="uz.ilmiddin1701.asalariapp.fragments.ScannerFragment"
         android:label="fragment_scanner"
         tools:layout="@layout/fragment_scanner" />
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="uz.ilmiddin1701.asalariapp.fragments.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" />
 </navigation>

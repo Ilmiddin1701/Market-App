@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/empty"
+            android:text="@string/empty1"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginBottom="30dp"

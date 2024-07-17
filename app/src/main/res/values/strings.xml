@@ -15,5 +15,6 @@
     <string name="yangi_savdo_boshlash">Yangi savdo boshlash</string>
     <string name="jami_narx_0_so_m">Jami narx: 0 so\'m</string>
     <string name="soni">Soni</string>
-    <string name="empty">Skannerlanganlar ro\'yxati bo\'sh!\nSavdoni boshlash uchun QR-kodni \nskanerlang</string>
+    <string name="empty1">Skannerlanganlar ro\'yxati bo\'sh!\nSavdoni boshlash uchun QR-kodni \nskanerlang</string>
+    <string name="empty2">Ma\'lumotlar ba\'zasiga\n mahsulotlar ro\'yxati qo\'shilmagan!\n Savdoni boshlash uchun avval\n mahsulotlarni qo\'shing.</string>
 </resources>

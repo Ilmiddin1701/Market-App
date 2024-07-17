@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.view.drawToBitmap
 import androidx.fragment.app.Fragment
@@ -45,9 +46,11 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
         realtimeReference = firebaseDatabase.getReference("Products")
 
         binding.apply {
+            val anim1 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim)
+            val anim2 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim_2)
+            list = ArrayList()
             realtimeReference.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    list = ArrayList()
                     val children = snapshot.children
                     for (child in children) {
                         val product = child.getValue(Product::class.java)
@@ -61,6 +64,15 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
                     Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
                 }
             })
+            if (list.isNotEmpty()) {
+                empty.visibility = View.GONE
+                rv.visibility = View.VISIBLE
+            } else {
+                emptyImage.startAnimation(anim1)
+                emptyText.startAnimation(anim2)
+                rv.visibility = View.GONE
+                empty.visibility = View.VISIBLE
+            }
         }
         return binding.root
     }

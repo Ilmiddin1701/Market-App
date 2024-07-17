@@ -71,10 +71,35 @@ class ScannerFragment : Fragment() {
                     MyData.umumiyNarx.observe(viewLifecycleOwner) {
                         totalPrice.text = "Jami narx: $it so'm"
                     }
+
                     MyData.isScanner.observe(viewLifecycleOwner) {
-                        if (it) {
-                            scannerAdapter = ScannerAdapter(requireContext(), list)
-                            rv.adapter = scannerAdapter
+                        if (it && MySharedPreferences.sharedList.isNotEmpty()) {
+                            rv.visibility = View.VISIBLE
+                            card.visibility = View.VISIBLE
+                            empty.visibility = View.GONE
+                            realtimeReference.addValueEventListener(object : ValueEventListener {
+                                @SuppressLint("SetTextI18n")
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    list = ArrayList()
+                                    val children = snapshot.children
+                                    for (child in children) {
+                                        val product = child.getValue(Product::class.java)
+                                        if (product!!.id in MySharedPreferences.sharedList) {
+                                            list.add(product)
+                                        }
+                                    }
+                                    scannerAdapter = ScannerAdapter(requireContext(), list)
+                                    rv.adapter = scannerAdapter
+
+                                    MyData.umumiyNarx.observe(viewLifecycleOwner) {
+                                        totalPrice.text = "Jami narx: $it so'm"
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+                                }
+                            })
                         }
                     }
                 }

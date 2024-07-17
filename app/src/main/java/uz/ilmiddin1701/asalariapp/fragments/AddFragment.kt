@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DatabaseReference
@@ -26,6 +27,8 @@ import uz.ilmiddin1701.asalariapp.R
 import uz.ilmiddin1701.asalariapp.databinding.FragmentAddBinding
 import uz.ilmiddin1701.asalariapp.models.Product
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.util.UUID
 
 class AddFragment : Fragment() {
@@ -67,7 +70,7 @@ class AddFragment : Fragment() {
                     generateQRCode(id)
                     qrImage.setImageBitmap(btm)
                     card.visibility = View.VISIBLE
-                    val imageUri = getImageUri(requireContext(), btm)
+                    val imageUri = getUriFromBitmap(requireContext(), btm) as Uri
                     val task = storageReference.child(id).putFile(imageUri)
                     task.addOnSuccessListener {
                         if (it.task.isSuccessful) {
@@ -113,16 +116,14 @@ class AddFragment : Fragment() {
         }
     }
 
-    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(
-            inContext.contentResolver,
-            inImage,
-            "Title",
-            null
-        )
-        return Uri.parse(path)
+    private fun getUriFromBitmap(context: Context, bitmap: Bitmap): Uri? {
+        val tempDir = File(context.cacheDir, "images")
+        tempDir.mkdirs()
+        val tempFile = File(tempDir, "temp_image.jpg")
+        val fos = FileOutputStream(tempFile)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+        fos.close()
+        return FileProvider.getUriForFile(context, "${context.packageName}.provider", tempFile)
     }
 
     @SuppressLint("DefaultLocale", "SetTextI18n")
