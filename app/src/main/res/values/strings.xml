@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Asalari App</string>
     <string name="qr_image">QR_Image</string>
     <string name="mahsulot_nomi">Nomi</string>
@@ -17,4 +17,7 @@
     <string name="soni">Soni</string>
     <string name="empty1">Skannerlanganlar ro\'yxati bo\'sh!\nSavdoni boshlash uchun QR-kodni \nskanerlang</string>
     <string name="empty2">Ma\'lumotlar ba\'zasiga\n mahsulotlar ro\'yxati qo\'shilmagan!\n Savdoni boshlash uchun avval\n mahsulotlarni qo\'shing.</string>
+    <string name="empty_box">empty box</string>
+    <string name="x">x</string>
+    <string name="yes">yes</string>
 </resources>

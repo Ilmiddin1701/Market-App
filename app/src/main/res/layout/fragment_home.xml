@@ -20,12 +20,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:visibility="gone"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/emptyImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:contentDescription="@string/empty_box"
             android:src="@drawable/empty_box" />
 
         <TextView

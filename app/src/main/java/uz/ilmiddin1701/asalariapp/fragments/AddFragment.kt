@@ -7,7 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,6 @@ import com.google.zxing.qrcode.QRCodeWriter
 import uz.ilmiddin1701.asalariapp.R
 import uz.ilmiddin1701.asalariapp.databinding.FragmentAddBinding
 import uz.ilmiddin1701.asalariapp.models.Product
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.util.UUID

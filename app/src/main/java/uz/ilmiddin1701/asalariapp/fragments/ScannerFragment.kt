@@ -81,8 +81,8 @@ class ScannerFragment : Fragment() {
                                 @SuppressLint("SetTextI18n")
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     list = ArrayList()
-                                    val children = snapshot.children
-                                    for (child in children) {
+                                    val children1 = snapshot.children
+                                    for (child in children1) {
                                         val product = child.getValue(Product::class.java)
                                         if (product!!.id in MySharedPreferences.sharedList) {
                                             list.add(product)

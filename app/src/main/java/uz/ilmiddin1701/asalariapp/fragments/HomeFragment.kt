@@ -25,6 +25,7 @@ import uz.ilmiddin1701.asalariapp.adapters.ProductsAdapter
 import uz.ilmiddin1701.asalariapp.databinding.DialogItemBinding
 import uz.ilmiddin1701.asalariapp.databinding.FragmentHomeBinding
 import uz.ilmiddin1701.asalariapp.models.Product
+import uz.ilmiddin1701.asalariapp.utils.MySharedPreferences
 import uz.ilmiddin1701.asalariapp.utils.sdk26AdnUp
 import java.io.IOException
 
@@ -45,12 +46,15 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
         firebaseDatabase = FirebaseDatabase.getInstance()
         realtimeReference = firebaseDatabase.getReference("Products")
 
+        MySharedPreferences.init(requireContext())
+
         binding.apply {
             val anim1 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim)
             val anim2 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim_2)
-            list = ArrayList()
+
             realtimeReference.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    list = ArrayList()
                     val children = snapshot.children
                     for (child in children) {
                         val product = child.getValue(Product::class.java)
@@ -58,21 +62,43 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
                     }
                     productsAdapter = ProductsAdapter(this@HomeFragment, list)
                     rv.adapter = productsAdapter
+
+                    if (list.isNotEmpty()) {
+                        empty.visibility = View.GONE
+                        rv.visibility = View.VISIBLE
+                        realtimeReference.addValueEventListener(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                list = ArrayList()
+                                val children1 = snapshot.children
+                                for (child in children1) {
+                                    val product = child.getValue(Product::class.java)
+                                    list.add(product!!)
+                                }
+                                productsAdapter = ProductsAdapter(this@HomeFragment, list)
+                                rv.adapter = productsAdapter
+
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
+                            }
+                        })
+                    } else {
+                        emptyImage.startAnimation(anim1)
+                        emptyText.startAnimation(anim2)
+                        rv.visibility = View.GONE
+                        empty.visibility = View.VISIBLE
+
+                        val sharedList = MySharedPreferences.sharedList
+                        sharedList.clear()
+                        MySharedPreferences.sharedList = sharedList
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
                 }
             })
-            if (list.isNotEmpty()) {
-                empty.visibility = View.GONE
-                rv.visibility = View.VISIBLE
-            } else {
-                emptyImage.startAnimation(anim1)
-                emptyText.startAnimation(anim2)
-                rv.visibility = View.GONE
-                empty.visibility = View.VISIBLE
-            }
         }
         return binding.root
     }
