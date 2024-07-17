@@ -27,7 +27,6 @@ import uz.ilmiddin1701.asalariapp.databinding.FragmentAddBinding
 import uz.ilmiddin1701.asalariapp.models.Product
 import java.io.File
 import java.io.FileOutputStream
-import java.util.UUID
 
 class AddFragment : Fragment() {
     private val binding by lazy { FragmentAddBinding.inflate(layoutInflater) }
