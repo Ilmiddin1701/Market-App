@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.view.drawToBitmap
 import androidx.fragment.app.Fragment
@@ -46,43 +47,28 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
         firebaseDatabase = FirebaseDatabase.getInstance()
         realtimeReference = firebaseDatabase.getReference("Products")
 
+        val anim1 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim)
+        val anim2 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim_2)
+
         MySharedPreferences.init(requireContext())
+        list = ArrayList()
 
         binding.apply {
-            val anim1 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim)
-            val anim2 = AnimationUtils.loadAnimation(requireContext(), R.anim.combination_anim_2)
+            productsAdapter = ProductsAdapter(this@HomeFragment, list)
+            rv.adapter = productsAdapter
 
             realtimeReference.addValueEventListener(object : ValueEventListener {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    list = ArrayList()
+                    list.clear()
                     val children = snapshot.children
                     for (child in children) {
                         val product = child.getValue(Product::class.java)
                         list.add(product!!)
                     }
-                    productsAdapter = ProductsAdapter(this@HomeFragment, list)
-                    rv.adapter = productsAdapter
-
                     if (list.isNotEmpty()) {
                         empty.visibility = View.GONE
                         rv.visibility = View.VISIBLE
-                        realtimeReference.addValueEventListener(object : ValueEventListener {
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                list = ArrayList()
-                                val children1 = snapshot.children
-                                for (child in children1) {
-                                    val product = child.getValue(Product::class.java)
-                                    list.add(product!!)
-                                }
-                                productsAdapter = ProductsAdapter(this@HomeFragment, list)
-                                rv.adapter = productsAdapter
-
-                            }
-
-                            override fun onCancelled(error: DatabaseError) {
-                                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
-                            }
-                        })
                     } else {
                         emptyImage.startAnimation(anim1)
                         emptyText.startAnimation(anim2)
@@ -93,6 +79,7 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
                         sharedList.clear()
                         MySharedPreferences.sharedList = sharedList
                     }
+                    productsAdapter.notifyDataSetChanged()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -149,5 +136,23 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
         }
         dialog.setView(dialogView.root)
         dialog.show()
+    }
+
+    override fun itemLongClick(product: Product, position: Int, view: View) {
+        val menu = PopupMenu(requireContext(), view)
+        menu.inflate(R.menu.popup_menu)
+        menu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_delete -> {
+                    realtimeReference.child(product.id!!).removeValue()
+                    val sharedList = MySharedPreferences.sharedList
+                    sharedList.remove(product.id)
+                    MySharedPreferences.sharedList = sharedList
+                    Toast.makeText(context, "Mahsulot o'chirildi", Toast.LENGTH_SHORT).show()
+                }
+            }
+            true
+        }
+        menu.show()
     }
 }

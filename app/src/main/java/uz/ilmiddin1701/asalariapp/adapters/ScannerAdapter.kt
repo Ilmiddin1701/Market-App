@@ -23,6 +23,7 @@ class ScannerAdapter(var context: Context, var list: ArrayList<Product>) : Adapt
                 Picasso.get().load(product.qrImgURL).into(qrImage)
                 productName.text = "Nomi: ${product.name}"
                 productPrice.text = "Narxi: ${product.price} so'm"
+                productDate.text = product.date
                 MySharedPreferences.init(context)
                 var count: Long = 0
                 for (i in MySharedPreferences.sharedList) {
@@ -31,9 +32,10 @@ class ScannerAdapter(var context: Context, var list: ArrayList<Product>) : Adapt
                     }
                     productSoni.text = "Soni: $count ta"
                 }
+                product.soni = count
                 umumiyNarx += product.price!! * count
                 MyData.umumiyNarx.postValue(umumiyNarx)
-                productDate.text = product.date
+
             }
         }
     }

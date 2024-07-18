@@ -27,6 +27,10 @@ class ProductsAdapter(var rvAction: RvAction, var list: ArrayList<Product>) : Ad
                 root.setOnClickListener {
                     rvAction.itemClick(product, position)
                 }
+                root.setOnLongClickListener {
+                    rvAction.itemLongClick(product, position, cardMain)
+                    true
+                }
             }
         }
     }
@@ -43,5 +47,6 @@ class ProductsAdapter(var rvAction: RvAction, var list: ArrayList<Product>) : Ad
 
     interface RvAction {
         fun itemClick(product: Product, position: Int)
+        fun itemLongClick(product: Product, position: Int, view: View)
     }
 }
