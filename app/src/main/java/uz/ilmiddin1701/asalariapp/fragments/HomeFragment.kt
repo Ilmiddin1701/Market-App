@@ -121,6 +121,7 @@ class HomeFragment : Fragment(), ProductsAdapter.RvAction {
         dialogView.apply {
             tvName.text = "Nomi: ${product.name}"
             tvPrice.text = "Narxi: ${product.price} so'm"
+            tvCount.text = "Soni: ${product.soni}"
             tvDate.text = "Olib kelingan sana: ${product.date}"
             Picasso.get().load(product.qrImgURL).into(qrImage)
             btnDownload.setOnClickListener {
